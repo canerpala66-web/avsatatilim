@@ -1,0 +1,3 @@
+import type { Metadata } from "next"; import PageHero from "@/components/PageHero"; import ContactSection from "@/components/ContactSection"; import BookingWidget from "@/components/BookingWidget";
+export const metadata:Metadata={title:"İletişim",description:"Avşa Tatil Rehberi iletişim bilgileri ve Ataş Aqua Otel rezervasyon talebi.",alternates:{canonical:"/iletisim"}};
+export default function Page(){return <><PageHero eyebrow="İletişim" title="Sorun, planlayın, içiniz rahat yola çıkın" description="Genel Avşa bilgileri ve Ataş Aqua Otel müsaitliği için bize ulaşın." crumb="İletişim"/><section className="section"><div className="container"><ContactSection/><div className="mt-12 max-w-4xl mx-auto"><BookingWidget/></div></div></section></>}

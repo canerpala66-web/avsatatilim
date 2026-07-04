@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function Breadcrumbs({items}:{items:{label:string;href?:string}[]}){return <nav aria-label="Sayfa yolu" className="text-sm text-[#698087] mb-7"><Link href="/">Ana Sayfa</Link>{items.map((x,i)=><span key={x.label}> <span className="mx-2">/</span>{x.href?<Link href={x.href}>{x.label}</Link>:<span className="text-[#073b4c]">{x.label}</span>}</span>)}</nav>}

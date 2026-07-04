@@ -1,0 +1,1 @@
+export default function SectionHeading({eyebrow,title,description,center=false}:{eyebrow:string;title:string;description?:string;center?:boolean}){return <div className={`${center?"text-center mx-auto":""} max-w-3xl mb-10`}><div className="eyebrow mb-3">{eyebrow}</div><h2 className="title">{title}</h2>{description&&<p className="lead mt-4">{description}</p>}</div>}

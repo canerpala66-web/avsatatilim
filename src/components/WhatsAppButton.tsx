@@ -1,0 +1,2 @@
+import { whatsappUrl } from "@/data/site"; import { Icon } from "./Icon";
+export default function WhatsAppButton(){return <a href={whatsappUrl("Merhaba, Avşa Tatil Rehberi üzerinden önerilen tesis Ataş Aqua Otel hakkında bilgi almak istiyorum.")} target="_blank" rel="noreferrer" aria-label="WhatsApp'tan bilgi al" className="hidden md:grid fixed right-6 bottom-6 z-50 w-14 h-14 place-items-center rounded-full bg-[#19aa62] text-white border-2 border-white shadow-[0_12px_30px_#073b4c35]"><Icon name="whatsapp" size={25}/></a>}

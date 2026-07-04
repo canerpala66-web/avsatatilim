@@ -1,0 +1,9 @@
+import type { Metadata } from "next"; import GuideLayout from "@/components/GuideLayout"; import { siteImages } from "@/data/site";
+export const metadata:Metadata={title:"Avşa’da Havuzlu ve Aquaparklı Otel Deneyimi",description:"Avşa havuzlu otel ve aquaparklı aile tatili hakkında planlama rehberi; Ataş Aqua Otel havuz olanakları ve rezervasyon.",alternates:{canonical:"/havuz-aquapark"}};
+export default function Page(){return <GuideLayout eyebrow="Havuz & aquapark" title="Avşa’da Havuzlu ve Aquaparklı Otel Deneyimi" description="Deniz tatilini havuz eğlencesiyle birleştirmek isteyen çocuklu aileler için dengeli bir rehber." featureImage={siteImages.aquapark} sections={[
+  {title:"Çocuklu aileler için havuz avantajı",body:"Havuz, plaja hazırlanma gerektirmeden günün kısa bir bölümünü değerlendirmeyi kolaylaştırır. Ebeveyn gözetimi ve tesis kuralları her zaman önceliklidir.",points:["Kolay erişim","Esnek tatil programı","Kontrollü ortak alan","Ailece eğlence"]},
+  {title:"Sıcak yaz günlerinde alternatif",body:"Öğle sıcağında gölgeli dinlenme alanları, sabah veya akşamüstü havuz planı daha konforlu olabilir. Güneş korumasını havuzda da ihmal etmeyin."},
+  {title:"Aquaparklı tatili planlamak",body:"Kaydırakların kullanım saati, yaş-boy sınırı ve görevli düzeni değişebilir. Çocuklarınızın yaşına uygunluğunu rezervasyondan önce doğrudan tesise sorun.",points:["Kullanım saatleri","Yaş ve boy koşulları","Kaymaz alanlar","Ebeveyn gözetimi"]},
+  {title:"Plaj + havuz dengesi",body:"Bir günü yalnızca tek aktiviteye ayırmak zorunda değilsiniz. Sabah deniz, öğleden sonra dinlenme ve akşamüstü havuz şeklinde yormayan bir plan kurulabilir."},
+  {title:"Ataş Aqua Otel’de havuz ve aquapark",body:"Ataş Aqua Otel, Avşa’da havuzlu ve aile dostu konaklama arayanların değerlendirebileceği öne çıkan önerimizdir. Güncel görsel, kullanım ve güvenlik bilgisini tesisle doğrulayın."}
+]}/>}
