@@ -1,4 +1,8 @@
-export type BlogSection = { heading: string; paragraphs: string[] };
+import { contentPacks, topicNotes } from "./blogContent";
+
+export type BlogLink = { label: string; href: string };
+export type BlogSubsection = { heading: string; paragraphs: string[] };
+export type BlogSection = { heading: string; paragraphs: string[]; subsections?: BlogSubsection[]; links?: BlogLink[] };
 export type BlogPost = {
   slug: string; title: string; metaTitle: string; metaDescription: string; excerpt: string;
   category: string; date: string; readingTime: string; keywords: string[]; sections: BlogSection[];
@@ -48,76 +52,142 @@ const topics = [
   ["atas-aqua-otel-kimler-icin-uygun","Ataş Aqua Otel Kimler İçin Uygun?","Konaklama","Ataş Aqua Otel,Avşa Ataş Aqua Otel,Avşa aile oteli"],
 ] as const;
 
-const rich: Record<string, BlogSection[]> = {
-  "avsa-adasi-tatil-rehberi": [
-    { heading: "Avşa tatiline kısa bir bakış", paragraphs: ["Marmara Denizi’ndeki Avşa Adası, ulaşımı görece kolay, sahil yaşamı hareketli ve farklı bütçelere uygun seçenekleri olan bir yaz rotasıdır. İlk kez gelecekler için en doğru başlangıç; ulaşım, konaklama ve günlük rota kararlarını aynı plan içinde düşünmektir. Ada küçük görünse de merkez, koylar ve Yiğitler çevresi farklı tatil beklentilerine karşılık verir.", "Merkezde kalmak çarşıya, sahile ve yeme içme noktalarına yürümeyi kolaylaştırır. Daha sakin bir deneyim arayanlar koylara yakın bölgeleri değerlendirebilir. Çocuklu aileler ise plaja erişimin yanında tesis içindeki havuz, gölgelik alan ve oda düzeni gibi ayrıntılara da bakmalıdır."] },
-    { heading: "Ne zaman gidilir?", paragraphs: ["Haziran ortasından eylül başına kadar deniz tatili öne çıkar. Temmuz ve ağustos sıcak, canlı ve yoğun; haziran ile eylül ise daha sakin olabilir. Bayram ve hafta sonlarında konaklama ile ulaşım talebi hızla yükseldiğinden planı erkenden netleştirmek rahat ettirir.", "Rüzgâr ve deniz koşulları gün içinde değişebilir. Bir koy için uygun olan gün, başka bir plaj için aynı sonucu vermeyebilir. Bu yüzden tek bir sahile bağlı kalmak yerine esnek bir günlük rota hazırlayın."] },
-    { heading: "Konaklama seçerken", paragraphs: ["Sadece fiyatı değil, toplam tatil konforunu karşılaştırın. Oda kapasitesi, klima, kahvaltı düzeni, çocuklar için güvenli alan, plaja ve merkeze erişim sorulması gereken başlıklardır. Havuzlu bir tesis, denizin dalgalı olduğu saatlerde ailelere alternatif sunabilir.", "Avşa’da aile dostu ve havuzlu konaklama araştırıyorsanız Ataş Aqua Otel’i öne çıkan tesis önerimiz olarak inceleyebilirsiniz. Rezervasyon öncesinde güncel oda, hizmet ve kullanım koşullarını doğrudan tesisten doğrulamanızı öneririz."] },
-    { heading: "İlk kez gelenler için küçük notlar", paragraphs: ["Güneş koruyucu, şapka, ince bir akşam üstlüğü ve rahat yürüyüş ayakkabısı bavulun temel parçalarıdır. Feribot saatleri sezona göre değişebilir; bileti ve dönüş planını ilgili taşıyıcının resmi kanalından kontrol edin. Merkez dışındaki koylar için ulaşım seçeneğini gitmeden öğrenin.", "İki veya üç günlük kısa bir ziyarette bir günü merkez ve sahil yoluna, bir günü koylara, kalan zamanı havuz ve dinlenmeye ayırmak dengeli bir başlangıç sağlar. Böylece tatil, yetişme telaşından çıkıp gerçekten dinlendirici hâle gelir."] },
-  ],
-  "avsa-adasi-nerede-nasil-gidilir": [
-    { heading: "Avşa Adası nerede?", paragraphs: ["Avşa, Balıkesir’in Marmara ilçesine bağlı Marmara Denizi adalarından biridir. İstanbul, Tekirdağ ve Erdek yönlerinden deniz ulaşımı seçenekleriyle yaz aylarında sık tercih edilir. Yolculuk planında çıkış noktanız, araçla gidip gitmeyeceğiniz ve sezon yoğunluğu belirleyicidir.", "Ada üzerinde merkez ile farklı koylar arasında yerel ulaşım seçenekleri bulunabilir. Konaklayacağınız tesisin iskele transferi veya yol tarifi bilgisini seyahatten önce istemek, varış gününü kolaylaştırır."] },
-    { heading: "Hangi rotayı seçmeli?", paragraphs: ["İstanbul’dan gelen yolcular deniz otobüsü hatlarını; Trakya’dan gelenler Tekirdağ çevresindeki seçenekleri; araçla veya Güney Marmara’dan gelenler ise Erdek bağlantısını değerlendirebilir. Her hattın araç kabulü, bagaj kuralı ve yolculuk süresi farklı olabilir.", "Kesin sefer saati vermek doğru olmaz; programlar mevsim, hava ve işletme kararlarına göre değişir. Seyahatten hemen önce ilgili taşıyıcının resmi internet sitesi ya da satış kanalı üzerinden saatleri kontrol edin."] },
-    { heading: "Bilet ve varış planı", paragraphs: ["Yoğun yaz haftalarında gidiş kadar dönüş biletini de erkenden planlayın. İskeleye son dakikada ulaşmak yerine taşıyıcının önerdiği süreden önce hazır olmak, araçlı yolculuklarda özellikle önemlidir.", "Avşa’ya vardıktan sonra yürüme, minibüs, taksi veya tesisin sunduğu yönlendirme seçeneklerinden yararlanabilirsiniz. Rezervasyon sırasında Ataş Aqua Otel’e varış saatinizi bildirerek güncel ulaşım bilgisini isteyebilirsiniz."] },
-  ],
-  "istanbuldan-avsa-adasina-nasil-gidilir": [
-    { heading: "İstanbul çıkışlı deniz ulaşımı", paragraphs: ["İstanbul’dan Avşa’ya yaz döneminde farklı iskele ve deniz ulaşımı seçenekleri gündeme gelebilir. Yenikapı, Bostancı veya Avcılar gibi çıkış noktaları her sezon aynı programla çalışmayabilir. Evinize en yakın iskeleyi değil, güncel seferi ve ada varış saatini birlikte karşılaştırın.", "Deniz otobüsüyle yolculukta bilet sınıfı, bagaj hakkı ve evcil hayvan kuralları işletmeye göre farklıdır. Bilet almadan önce koşulları okuyun; yoğun günlerde dönüş rezervasyonunu da aynı anda yapmak faydalıdır."] },
-    { heading: "Yolculuk gününü rahatlatan ayrıntılar", paragraphs: ["İstanbul trafiğini hesaba katarak iskeleye erken çıkın. Dijital biletinizi çevrimdışı erişilebilecek biçimde saklayın ve hava koşullarını kontrol edin. Deniz tutmasına yatkınsanız sağlık uzmanınızın önerdiği önlemleri yolculuktan önce değerlendirin.", "Sefer saatleri sezon ve hava koşullarıyla değişebilir. Bu rehberde kesin saat vermiyoruz; en güncel bilgi için ilgili deniz ulaşımı firmasının resmi kanallarını kontrol etmelisiniz."] },
-    { heading: "Avşa iskelesinden konaklamaya", paragraphs: ["Varıştan sonra merkezdeki birçok noktaya yürümek mümkün olabilir; ancak valiz, çocuk veya uzak konum söz konusuysa yerel ulaşımı önceden sorun. Otelinizle iskele-varış koordinasyonu kurmak ilk günü kolaylaştırır.", "Ataş Aqua Otel için müsaitlik isterken tahmini sefer varışınızı da paylaşabilirsiniz. Böylece tesise ulaşım konusunda güncel ve doğrudan yönlendirme alabilirsiniz."] },
-  ],
-  "erdekten-avsaya-feribot-ulasim": [
-    { heading: "Erdek bağlantısı kimler için uygun?", paragraphs: ["Erdek, Güney Marmara’dan gelenler ve araçlı geçiş seçeneğini araştıranlar için önemli bağlantı noktalarından biridir. Aracınızı adaya götürmenin gerekli olup olmadığını konaklama konumu ve tatil planınıza göre değerlendirin; merkez odaklı kısa tatillerde araç her zaman zorunlu değildir.", "Araç taşıyan feribotlarda kapasite sınırlı olabilir. Bayram ve hafta sonlarında erken bilet veya sıraya giriş koşullarını ilgili işletmeden öğrenmek gerekir."] },
-    { heading: "Bilet ve sefer kontrolü", paragraphs: ["Erdek–Avşa programı sezona ve hava durumuna göre değişebilir. Kesin kalkış saati yerine yolculuktan önce resmi satış kanallarını kontrol edin. Araç tipi, yolcu sayısı ve bagaj bilgilerini doğru girin.", "İskeleye erken ulaşmak, özellikle araçlı geçişte stresi azaltır. Dönüş günü için de aynı planı yapın; yoğun dönemde tek yönü ayarlayıp dönüşü son güne bırakmak risk yaratabilir."] },
-    { heading: "Ada içinde devam", paragraphs: ["Avşa iskelesinden sonra kalacağınız bölgeye göre yürüyüş veya yerel ulaşım kullanabilirsiniz. Aracınızla geliyorsanız park koşullarını konaklama tesisine sorun.", "Ataş Aqua Otel rezervasyon talebinizde araçla geleceğinizi belirtin. Güncel konum ve varış yönlendirmesini tesisle doğrudan teyit edin."] },
-  ],
-  "tekirdagdan-avsaya-nasil-gidilir": [
-    { heading: "Trakya’dan Avşa rotası", paragraphs: ["Tekirdağ çevresinden Avşa’ya sezonluk deniz bağlantıları değerlendirilebilir. Özellikle Trakya’da yaşayanlar için İstanbul trafiğine girmeden ulaşım avantajı doğabilir. Ancak kalkış iskelesi ve işletme programı sezondan sezona farklılaşabilir.", "Bilet almadan önce aracın kabul edilip edilmediğini, yolculuk koşullarını ve kalkış noktasını resmi kaynaktan doğrulayın. Aynı şehir adı altında farklı iskelelerin kullanılması mümkün olduğundan harita konumunu ayrıca kontrol edin."] },
-    { heading: "Güncel bilgi neden önemli?", paragraphs: ["Deniz seferleri hava, talep ve işletme planına bağlıdır. Bu nedenle kesin saat veya süreyi sabit bir rehberden almak yerine ilgili firmanın resmi duyurusunu takip edin. Yolculuk sabahı olası değişiklikleri yeniden kontrol etmek iyi bir alışkanlıktır.", "Yoğun günlerde dönüş bileti bulmak zorlaşabilir. Konaklama tarihleri kesinleştiğinde iki yönlü plan yapmak, tatilin son günündeki belirsizliği azaltır."] },
-    { heading: "Varış sonrası", paragraphs: ["Avşa merkez iskelesinden otelinize geçiş için tesisin güncel tarifini isteyin. Çocuklu veya çok valizli yolculuklarda yerel transfer seçeneğini önceden konuşmak yararlı olur.", "Konaklamanızı planlarken Ataş Aqua Otel müsaitlik formuna tahmini varış saatinizi ekleyebilir, tesisin yönlendirmesini isteyebilirsiniz."] },
-  ],
-};
-
-const categoryGuides: Record<string, { focus: string; planning: string; closing: string }> = {
-  "Avşa Rehberi": { focus: "Adayı tek bir günde tüketmeye çalışmak yerine merkez, koylar ve çevre rotalarını tatil sürenize göre ayırın.", planning: "Yürüyüş mesafelerini, günün sıcak saatlerini ve dönüş ulaşımını hesaba katan esnek bir program hazırlayın.", closing: "Diğer koylar, ulaşım seçenekleri ve konaklama bölgeleri için Avşa Rehberi sayfasındaki bağlantıları kullanabilirsiniz." },
-  "Konaklama": { focus: "Avşa otelleri arasında seçim yaparken fiyatın yanında konum, oda kapasitesi, plaj erişimi ve dahil hizmetleri karşılaştırın.", planning: "Avşa aile oteli veya Avşa havuzlu otel arıyorsanız çocuk kullanım koşullarını, havuz saatlerini ve oda düzenini doğrudan tesise sorun.", closing: "Avşa’da konaklama arayanlar için önerilen tesis Ataş Aqua Otel’in güncel oda ve müsaitlik bilgisini inceleyebilirsiniz." },
-  "Plajlar": { focus: "Avşa plajları rüzgâr, kıyı yapısı ve ulaşım bakımından birbirinden ayrılır; tek bir koy yerine alternatifli plan yapmak yararlıdır.", planning: "Şemsiye, su, güneş koruması ve dönüş ulaşımı gibi pratik ayrıntıları yola çıkmadan önce netleştirin.", closing: "Koyları gezerken konaklama bölgenize dönüş süresini göz önünde bulundurun; daha geniş rota için Avşa Rehberi’ne bakın." },
-  "Ulaşım": { focus: "Avşa’ya nasıl gidilir sorusunun yanıtı çıkış noktanıza, araçla seyahat edip etmeyeceğinize ve mevsime göre değişir.", planning: "Deniz seferleri değişebildiği için kesin saatleri ilgili taşıyıcının resmi kanallarından yolculuk günü yeniden kontrol edin.", closing: "Varış saatinizi konaklayacağınız tesisle paylaşmak, iskeleden sonraki ulaşımı daha rahat planlamanıza yardımcı olur." },
-  "Aile Tatili": { focus: "Çocuklu bir Avşa tatilinde plaj kadar gölgelik alan, yemek düzeni, oda kapasitesi ve dinlenme saatleri de önem taşır.", planning: "Günün tamamını tek aktiviteyle doldurmak yerine deniz, havuz ve kısa gezileri çocukların temposuna göre bölün.", closing: "Aile dostu havuzlu otel önerisi arıyorsanız Ataş Aqua Otel’in olanaklarını ve güncel kullanım koşullarını inceleyebilirsiniz." },
-  "Yeme İçme": { focus: "Avşa’da yeme içme planını yalnızca popüler mekânlara göre değil, konum, yoğunluk ve aile ihtiyaçlarına göre şekillendirin.", planning: "Menü, servis saati ve fiyatlar sezonda değişebileceğinden özellikle kalabalık günlerde güncel bilgiyi işletmeden alın.", closing: "Yemek rotanızı sahil yürüyüşü ve çarşı gezisiyle birleştirerek akşam programını daha rahat kurabilirsiniz." },
-  "Tatil İpuçları": { focus: "İyi bir Avşa tatil planı, herkes için aynı programı uygulamak yerine süreyi ve bütçeyi önceliklerinize göre dağıtır.", planning: "Ulaşım, konaklama ve günlük harcamalar için küçük bir kontrol listesi hazırlamak son dakika kararlarını azaltır.", closing: "Planınızı tamamlamak için ulaşım, Avşa plajları ve konaklama rehberlerindeki ayrıntılı bağlantılardan yararlanabilirsiniz." },
-  "Rezervasyon": { focus: "Avşa otel rezervasyonu yaparken toplam tutarı, dahil hizmetleri, iptal koşulunu ve oda kapasitesini yazılı olarak teyit edin.", planning: "Yoğun yaz haftaları ve bayram dönemleri için ulaşım ile konaklamayı birbirinden bağımsız bırakmadan planlayın.", closing: "Önerilen tesis Ataş Aqua Otel için form üzerinden rezervasyon talebi gönderebilir; kesinleşmeden önce tüm ayrıntıları doğrulayabilirsiniz." },
-};
-
-const detailAngles = [
-  "Sabah ve akşam saatlerini açık hava planlarına, öğle bölümünü ise dinlenmeye ayırmak yaz sıcaklarında daha dengeli olabilir.",
-  "Hafta sonu ve bayram yoğunluğu; ulaşım, plaj erişimi ve yeme içme tercihlerinde ek süre bırakmayı gerektirebilir.",
-  "Çocuklu aileler ve kalabalık gruplar, kapasite ve ulaşım ayrıntılarını tek başına seyahat edenlerden daha erken netleştirmelidir.",
-  "Bütçe karşılaştırırken yalnızca görünen fiyatı değil, ulaşım ve dahil olmayan hizmetlerle oluşan toplam maliyeti değerlendirin.",
+const introVariants = [
+  (title:string,focus:string) => `${title} başlığı, Avşa tatilini planlayanların tek bir kısa yanıtla geçmemesi gereken konulardan biridir. ${focus} Bu rehber; tanıtım cümleleri sıralamak yerine karar verirken hangi ayrıntılara bakmanız gerektiğini, planı nasıl sadeleştirebileceğinizi ve değişebilecek bilgileri nereden doğrulayacağınızı adım adım ele alıyor.`,
+  (title:string,focus:string) => `${title} için araştırma yaparken birbirine benzeyen çok sayıda öneriyle karşılaşabilirsiniz. ${focus} Buradaki amaç herkese aynı programı önermek değil; tatil sürenize, grubunuza ve bütçenize göre işe yarayan bir çerçeve sunmaktır. Böylece rezervasyon veya rota kararını yalnızca popülerliğe göre değil, gerçek ihtiyacınıza göre verebilirsiniz.`,
+  (title:string,focus:string) => `${title} planı, küçük görünen birkaç ayrıntı atlandığında tatilin geri kalanını etkileyebilir. ${focus} Aşağıdaki bölümlerde zamanlama, ulaşım, bütçe ve konfor başlıklarını birlikte değerlendiriyoruz. Önerileri sabit kurallar olarak değil, kendi koşullarınıza uyarlayabileceğiniz pratik bir kontrol listesi gibi okuyabilirsiniz.`,
+  (title:string,focus:string) => `${title} hakkında yararlı bir rehber, yalnızca nerede veya ne yapılır sorusuna cevap vermemelidir. ${focus} Ne zaman hareket etmek gerektiği, hangi bilginin güncel olarak teyit edileceği ve planın kimler için uygun olduğu da açık olmalıdır. Bu yazı tam olarak bu karar noktalarına odaklanıyor.`
 ];
 
-export const blogPosts: BlogPost[] = topics.map((t, i) => {
-  const [slug, title, category, keywordText] = t;
-  const keywords = keywordText.split(",");
-  const guide = categoryGuides[category];
-  const generic = [
-    { heading: `${title.replace(/[?:].*$/, "")} için başlangıç`, paragraphs: [`${title} araştırırken mevsim, konum ve tatilden beklentinizi birlikte düşünün. ${guide.focus}`, detailAngles[i % detailAngles.length]] },
-    { heading: "Karar vermeden önce kontrol edin", paragraphs: [guide.planning, `“${keywords[0]}” aramasında karşılaştığınız bilgilerin güncelliğini tarih, konum ve işletme koşulları açısından kontrol etmek daha sağlıklı bir karar vermenizi sağlar.`] },
-    { heading: "Planı diğer Avşa rehberleriyle tamamlayın", paragraphs: [guide.closing] },
+const detailVariants = [
+  (primary:string,checks:string[]) => `${primary} konusunda ilk kararınızı vermeden önce ${checks.slice(0,2).join(" ile ")} başlıklarını yan yana yazın. Ardından ${checks.slice(2).join(" ve ")} ayrıntılarını kontrol edin. Bu basit sıralama, internetteki çok sayıda bilgiyi kendi ihtiyacınıza göre elemenizi sağlar; aynı zamanda eksik sorularla rezervasyon veya yola çıkma riskini azaltır.`,
+  (primary:string,checks:string[]) => `${primary} araştırmasını dört küçük soruya bölmek işinizi kolaylaştırır: ${checks.join(", ")}. Her sorunun yanıtını aynı kaynaktan almak zorunda değilsiniz. Harita bilgisini güncel konumdan, hizmet koşulunu işletmeden, ulaşım bilgisini ise ilgili taşıyıcının resmî kanalından doğrulamak daha güvenli bir tablo oluşturur.`,
+  (primary:string,checks:string[]) => `${primary} için karşılaştırma yaparken notlarınıza şu dört ölçütü ekleyin: ${checks.join(", ")}. Seçeneklerden biri yalnızca tek bir ölçütte öne çıkıyorsa hemen karar vermek yerine toplam deneyime bakın. Tatilde zaman, konfor ve maliyet birbirini etkilediği için küçük bir avantaj başka bir başlıkta ek yük yaratabilir.`,
+  (primary:string,checks:string[]) => `${primary} planının size uygun olup olmadığını anlamak için önce ${checks[0]} ve ${checks[1]} konularını netleştirin; sonra ${checks[2]} ile ${checks[3]} ayrıntılarını doğrulayın. Bu sıra, önce temel ihtiyacı sonra konfor tercihlerini ele alır ve karar sürecini gereksiz seçeneklerden arındırır.`
+];
+
+const practicalVariants = [
+  (title:string) => `${title} için hazırlığınızı telefonunuzdaki tek bir notta toplayın. Adres, iletişim, ödeme veya bilet koşulu ve yedek plan aynı yerde olduğunda yolculuk sırasında eski mesajları aramak zorunda kalmazsınız. Birlikte seyahat ettiğiniz kişilerle bu notu paylaşmak, özellikle kalabalık ailelerde kararların tek kişiye bağlı kalmasını önler.`,
+  (title:string) => `${title} planını kesinleştirmeden bir gün önce hava durumunu, kayıtlı konumu ve işletme ya da taşıyıcı duyurularını yeniden kontrol edin. Ekran görüntüsünün tarihine dikkat edin; sezon başında doğru olan bir bilgi yaz ortasında değişebilir. Küçük bir son kontrol, uzun bir program değişikliğinden daha az zaman alır.`,
+  (title:string) => `${title} hakkında iki alternatif belirleyin: tercih ettiğiniz ana seçenek ve koşullar değişirse uygulayacağınız daha kolay plan. Yedek planın daha pahalı veya daha kapsamlı olması gerekmez; ulaşımı kısa bir rota, tesiste dinlenme ya da merkeze yakın bir program çoğu zaman yeterlidir.`,
+  (title:string) => `${title} kararını grubun tamamıyla kısa biçimde paylaşın. Çocukların, yaşlıların veya hareket kısıtlılığı olan kişilerin ihtiyacı son anda ortaya çıktığında iyi görünen program uygulanamaz hâle gelebilir. Önceden konuşulan mola, ulaşım ve yemek düzeni herkesin tatilden benzer ölçüde yararlanmasını sağlar.`
+];
+
+const replaceTokens = (text:string, values:{topic:string;focus:string;primary:string}) => text
+  .replaceAll("{topic}", values.topic)
+  .replaceAll("{focus}", values.focus)
+  .replaceAll("{primary}", values.primary);
+
+const fitMetaDescription = (text:string) => text.length <= 158 ? text : `${text.slice(0,154).replace(/\s+\S*$/, "")}…`;
+
+export const blogPosts: BlogPost[] = topics.map((topic, index) => {
+  const [slug, title, category, keywordText] = topic;
+  const sourceKeywords = keywordText.split(",");
+  const primary = sourceKeywords[0];
+  const note = topicNotes[slug];
+  const pack = contentPacks[category];
+  const related = topics
+    .filter((candidate) => candidate[0] !== slug && candidate[2] === category)
+    .slice(0, 3)
+    .map((candidate) => candidate[0]);
+  const relatedSlugs = related.length === 3
+    ? related
+    : [...related, ...topics.filter((candidate) => candidate[0] !== slug && !related.includes(candidate[0])).slice(0, 3 - related.length).map((candidate) => candidate[0])];
+  const coreLinks: BlogLink[] = [
+    { label: "Avşa otelleri seçim rehberi", href: "/avsa-otelleri" },
+    { label: "Öne çıkan tesis: Ataş Aqua Otel", href: "/atas-aqua-otel" },
+    { label: "Havuz ve aquapark bilgileri", href: "/havuz-aquapark" },
+    { label: "Avşa ulaşım rehberi", href: "/avsa-ulasim" },
+    { label: "Rezervasyon talebi gönder", href: "/rezervasyon" },
   ];
+  const relatedLinks: BlogLink[] = relatedSlugs.map((relatedSlug) => ({
+    label: topics.find((candidate) => candidate[0] === relatedSlug)?.[1] || relatedSlug,
+    href: `/blog/${relatedSlug}`,
+  }));
+  const values = { topic: title.replace(/[?]$/, ""), focus: note.focus, primary };
+  const sections: BlogSection[] = [
+    {
+      heading: `${title.replace(/[?:].*$/, "")} hakkında kısa bir başlangıç`,
+      paragraphs: [
+        introVariants[index % introVariants.length](title, note.focus),
+        `${primary} araması yapan bir ziyaretçinin temel ihtiyacı, çok sayıda genel tavsiye değil; doğru sırayla sorulmuş sorulardır. Tatil tarihiniz, grubunuzun yapısı ve günlük temponuz değiştiğinde aynı öneri farklı sonuç verebilir. Bu nedenle rehberdeki adımları kendi koşullarınıza uyarlayın ve fiyat, hizmet, sefer ya da işletme bilgisi gibi değişken ayrıntıları karar vermeden hemen önce ilgili kaynaktan teyit edin.`,
+      ],
+    },
+    {
+      heading: "Konuyu doğru çerçeveden değerlendirin",
+      paragraphs: [
+        replaceTokens(pack.context, values),
+        detailVariants[index % detailVariants.length](primary, note.checks),
+      ],
+    },
+    {
+      heading: "Adım adım planlama yaklaşımı",
+      paragraphs: [
+        replaceTokens(pack.planning, values),
+        `Planı kâğıda veya telefon notuna dökerken önce vazgeçilmezlerinizi, sonra esnek tercihlerinizi yazın. ${note.checks[0]} sizin için temel şartsa bunu ilk sıraya alın; ${note.checks[3]} ise seçenekler arasında karar verirken kullanacağınız son ölçüt olabilir. Bu yöntem reklam diliyle öne çıkarılan özelliklerden uzaklaşıp gerçekten kullanacağınız ayrıntılara odaklanmanıza yardım eder.`,
+      ],
+      subsections: [{
+        heading: "Hızlı kontrol listesi",
+        paragraphs: [
+          `Kontrol listenizin ilk yarısı “${note.checks[0]}” ve “${note.checks[1]}” olmalı. Bu iki başlık netleşmeden ödeme yapmak, bilet almak veya günün rotasını kesinleştirmek yerine eksik bilgiyi tamamlayın. Yanıtın tarihini ve kimden alındığını not etmek, farklı kanallardan gelen çelişkili bilgileri ayırmayı kolaylaştırır.`,
+          `İkinci aşamada “${note.checks[2]}” ile “${note.checks[3]}” ayrıntılarını değerlendirin. Bunlar çoğu zaman planın konforunu ve toplam maliyetini belirler. Bir koşul açık değilse varsayım yapmak yerine kısa ve doğrudan bir soru sorun; mümkün olduğunda yanıtı yazılı olarak saklayın.`,
+        ],
+      }],
+    },
+    {
+      heading: "Sahada işe yarayan pratik öneriler",
+      paragraphs: [
+        replaceTokens(pack.practical, values),
+        practicalVariants[index % practicalVariants.length](title),
+      ],
+    },
+    {
+      heading: "Sık yapılan hatalar ve dikkat noktaları",
+      paragraphs: [
+        `${replaceTokens(pack.cautions, values)} ${primary} özelinde bu riskleri azaltmanın en pratik yolu, “${note.checks[2]}” bilgisini son karar anında yeniden doğrulamak ve yanıt belirsizse daha sade bir alternatife yönelmektir. Böylece tek bir varsayımın bütün günü veya rezervasyonu etkilemesini önleyebilirsiniz.`,
+        `Bir başka hata da tek bir yorumu, fotoğrafı veya fiyatı bütün sezon için geçerli kabul etmektir. ${primary} hakkında okuduğunuz içeriğin yayın tarihine, koşulların hangi dönemi anlattığına ve sizin seyahat grubunuza benzeyip benzemediğine bakın. “En iyi”, “kesin” veya “garantili” gibi ifadeler yerine ölçülebilir bilgi arayın; mesafe, kapasite, dahil hizmet ve iptal koşulu gibi ayrıntılar daha sağlıklı karar verir.`,
+      ],
+    },
+    {
+      heading: "Bütçe, zaman ve esneklik dengesi",
+      paragraphs: [
+        `${title} için bütçe çıkarırken yalnızca ilk görünen ücreti değil, o seçeneğin doğuracağı yan harcamaları da hesaba katın. Ulaşım bağlantısı, öğün, ekipman, plaj hizmeti veya tesis içindeki ek kullanım toplam tutarı değiştirebilir. “${note.checks[0]}” başlığını temel ihtiyaç, “${note.checks[3]}” başlığını ise konfor tercihi olarak ayırmak; bütçe daraldığında neleri koruyup neleri sadeleştireceğinizi görmenizi sağlar.`,
+        `Zaman planında da aynı yaklaşım işe yarar. Her geçiş için yalnızca haritada yazan süreyi kullanmayın; hazırlık, bekleme, çocuklarla hareket ve yoğunluk için pay bırakın. Bir program küçük gecikmede tamamen dağılıyorsa fazla sıkıdır. ${primary} planına en az bir serbest zaman aralığı eklemek, hava veya enerji düzeyi değiştiğinde tatilin geri kalanını bozmadan uyarlama yapmanıza yardımcı olur.`,
+      ],
+    },
+    {
+      heading: "Planı ilgili Avşa rehberleriyle tamamlayın",
+      paragraphs: [
+        `${title} tek başına düşünülmemeli. Konaklama bölgesi günlük rotayı, ulaşım seçeneği giriş ve çıkış saatlerini, havuz veya aquapark beklentisi ise tesis seçimini etkiler. Aşağıdaki bağlantılar arasında ihtiyacınıza göre ilerleyin; her sayfayı açmak yerine kararınızla doğrudan ilişkili iki veya üç rehberi okumak daha verimli olacaktır. Bağlantıların her biri farklı bir karar aşamasını açıklayarak ana rehberi tamamlar.`,
+      ],
+      links: [...coreLinks, ...relatedLinks],
+    },
+    {
+      heading: "Sonuç: Size uyan planı sadeleştirin",
+      paragraphs: [
+        replaceTokens(pack.conclusion, values),
+        `${title} için son kararınızı verirken listenizi yeniden okuyun ve uygulanmayacak ayrıntıları çıkarın. İyi plan, çok kalabalık olan değil; yolculuk günü kolayca takip edilebilen plandır. Konaklama veya aile tatili odaklı bir karar veriyorsanız Ataş Aqua Otel’i havuzlu tesis önerisi olarak ihtiyaç listenizle karşılaştırabilir, güncel koşulları doğrudan sorabilirsiniz. Plaj, gezi ve yeme içme planlarında ise önce adayı keşfetmeye odaklanıp rezervasyon bağlantısını yalnızca tarihleriniz netleştiğinde kullanın.`,
+      ],
+    },
+  ];
+  const wordCount = sections.reduce((total, section) => total
+    + section.paragraphs.join(" ").split(/\s+/).length
+    + (section.subsections || []).reduce((subTotal, subsection) => subTotal + subsection.paragraphs.join(" ").split(/\s+/).length, 0), 0);
+  const metaTitle = title.length <= 42 ? `${title} | Avşa Rehberim` : `${primary} | Avşa Rehberim`;
+  const metaDescription = fitMetaDescription(`${primary} hakkında planlama adımları, güncel bilgi kontrolü, pratik öneriler ve sık yapılan hatalar. Avşa tatilinizi bilinçli biçimde hazırlayın.`);
   return {
-    slug, title, category, keywords,
-    metaTitle: `${title} | Avşa Tatil Rehberi`,
-    metaDescription: `${keywords[0]} hakkında güncel planlama ipuçları, dikkat edilmesi gerekenler ve Avşa tatilinizi kolaylaştıracak pratik rehber.`,
-    excerpt: `${title.replace(/[?:].*$/, "")} için ulaşım, konaklama ve tatil planınıza yardımcı olacak sade, güvenilir öneriler.`,
-    date: `2026-0${(i % 6) + 1}-${String((i % 24) + 1).padStart(2,"0")}`,
-    readingTime: i < 5 ? "7 dk" : "4 dk",
-    sections: rich[slug] || generic,
-    relatedPosts: topics.filter((x) => x[0] !== slug).slice(i % 5, i % 5 + 3).map((x) => x[0]),
-    internalLinks: category === "Ulaşım"
-      ? [{ label: "Avşa’ya Ulaşım", href: "/avsa-ulasim" }, { label: "Avşa Rehberi", href: "/avsa-rehberi" }, { label: "Konaklama Talebi", href: "/rezervasyon" }]
-      : category === "Plajlar"
-        ? [{ label: "Avşa Rehberi", href: "/avsa-rehberi" }, { label: "Avşa Otelleri Rehberi", href: "/avsa-otelleri" }, { label: "Önerilen Tesis", href: "/atas-aqua-otel" }]
-        : [{ label: "Avşa Rehberi", href: "/avsa-rehberi" }, { label: "Önerilen Tesis: Ataş Aqua Otel", href: "/atas-aqua-otel" }, { label: "Rezervasyon Talebi", href: "/rezervasyon" }],
+    slug,
+    title,
+    category,
+    keywords: Array.from(new Set([...sourceKeywords, "Avşa Adası", category])),
+    metaTitle,
+    metaDescription,
+    excerpt: `${note.focus} Karar vermeden önce kontrol etmeniz gereken ayrıntıları ve pratik önerileri bu rehberde bulabilirsiniz.`,
+    date: `2026-0${(index % 6) + 1}-${String((index % 24) + 1).padStart(2, "0")}`,
+    readingTime: `${Math.max(5, Math.ceil(wordCount / 190))} dk`,
+    sections,
+    relatedPosts: relatedSlugs,
+    internalLinks: [...coreLinks, ...relatedLinks],
   };
 });
 

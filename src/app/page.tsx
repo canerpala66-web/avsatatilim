@@ -10,6 +10,7 @@ import { blogPosts } from "@/data/blog";
 import { roomTypes, siteImages } from "@/data/site";
 import { Icon } from "@/components/Icon";
 import SiteImage from "@/components/SiteImage";
+import IslandTicker from "@/components/IslandTicker";
 
 const discovery = [
   ["Avşa’ya Nasıl Gidilir?","İstanbul, Erdek ve Tekirdağ bağlantılarını karşılaştırın.","/avsa-ulasim","↗"],
@@ -20,7 +21,7 @@ const discovery = [
   ["Gezilecek Yerler","Sahil yolu, çarşı, Yiğitler ve koylarda sakin keşifler.","/avsa-rehberi","✦"],
 ] as const;
 
-export default function Home(){return <><Hero/>
+export default function Home(){return <><Hero/><IslandTicker/>
   <section className="section pt-28 md:pt-40"><div className="container"><SectionHeading eyebrow="Neden Avşa?" title="Ada tatilinin hafif ve özgür hâli" description="Kısa bir hafta sonundan uzun bir aile tatiline kadar Avşa; deniz ulaşımı, farklı plajları ve yürünebilir ada yaşamıyla planınıza uyum sağlar." center/><div className="grid md:grid-cols-3 gap-5">{[["01","Denizle başlayan yolculuk","İstanbul, Erdek ve Tekirdağ yönlerinden sezonluk deniz ulaşımı seçeneklerini karşılaştırın."],["02","Her güne başka bir kıyı","Merkez Plajı’ndan Çınar, Altınkum ve Karadut çevresine uzanan farklı koyları keşfedin."],["03","Ailelerin kendi ritmi","Plajı, havuzu ve kısa ada gezilerini çocukların temposuna göre aynı programda birleştirin."]].map(([n,t,d])=><article className="card editorial-card p-7 md:p-8" key={n}><span className="section-number">{n}</span><h3 className="font-[Georgia] text-2xl text-[#073b4c] mt-8">{t}</h3><p className="text-[#637a80] leading-7 mt-3">{d}</p></article>)}</div></div></section>
 
   <section className="section soft-section"><div className="container relative"><div className="grid lg:grid-cols-[.72fr_1.28fr] gap-10 items-end mb-10"><SectionHeading eyebrow="Avşa’da nerede kalınır?" title="Konaklamayı tatil tarzınıza göre seçin"/><p className="lead lg:pb-10">Avşa otelleri arasında karar verirken yalnızca gecelik fiyatı değil; plaja erişimi, oda düzenini, merkeze yakınlığı ve aile ihtiyaçlarını birlikte değerlendirin.</p></div><div className="grid md:grid-cols-3 gap-4">{[["Merkez ve sahil","Çarşıya, iskeleye ve akşam yürüyüşlerine yakın olmak isteyenler için pratik bir başlangıç.","⌖"],["Avşa’da havuzlu otel","Çocuklu aileler ve denize alternatif bir tesis günü planlayanlar için esnek bir seçenek.","≈"],["Koylara yakın bölgeler","Daha sakin sabahlar ve doğayla iç içe bir ada ritmi isteyenler için.","☼"]].map(([t,d,icon])=><Link href="/avsa-otelleri" key={t} className="card group p-7 bg-white/80 hover:-translate-y-1"><span className="w-14 h-14 rounded-[20px] bg-gradient-to-br from-[#dff7f4] to-[#fff5d8] grid place-items-center text-[#007f91] text-xl mb-8">{icon}</span><h3 className="font-[Georgia] text-2xl text-[#073b4c]">{t}</h3><p className="text-sm leading-7 text-[#647a80] my-4">{d}</p><span className="text-sm font-bold text-[#007f91] inline-flex items-center gap-2">Avşa otelleri rehberi <Icon name="arrow" size={17}/></span></Link>)}</div></div></section>

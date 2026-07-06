@@ -1,6 +1,6 @@
 export const site = {
   siteName: "Avşa Tatil Rehberi",
-  siteUrl: "https://www.avsatatilrehberi.com.tr",
+  siteUrl: "https://www.avsarehberim.com.tr",
   phone: "0551 086 66 82",
   whatsappNumber: "905510866682",
   address: "Avşa Adası, Marmara / Balıkesir",
@@ -58,7 +58,7 @@ export const siteImages = {
 } as const;
 
 export const blogCategoryImages: Record<string,{src:string;alt:string}> = {
-  "Avşa Rehberi": { src: "/images/blog/avsa-rehberi-kapak.webp", alt: "Avşa Adası bağları ve ada merkezi manzarası" },
+  "Avşa Rehberi": { src: "/images/blog/avsa-rehberi-kapak.webp", alt: "Avşa Adası'nın havadan görünümü ve kıyı hattı" },
   "Konaklama": { src: "/images/blog/avsa-gunbatimi-kapak.webp", alt: "Avşa Adası sahilinde gün batımı" },
   "Plajlar": { src: "/images/blog/avsa-plajlar-kapak.webp", alt: "Avşa Adası Marmara Denizi ufku" },
   "Ulaşım": { src: "/images/blog/avsa-ulasim-kapak.webp", alt: "Avşa Adası havadan görünümü ve kıyıları" },
