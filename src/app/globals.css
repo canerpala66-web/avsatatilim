@@ -182,6 +182,8 @@ h1,h2,h3 { text-wrap:balance; }
 .booking-search input:focus,.booking-search select:focus,.booking-search textarea:focus { border-color:#7ec7bc; background:#fff!important; box-shadow:0 0 0 3px #8dd6c92d; }
 
 .island-ticker + .section { padding-top:180px; }
+.hero-premium + .home-featured-priority { padding-top:clamp(150px,14vw,210px); }
+.island-ticker + .home-guide-intro { padding-top:clamp(74px,8vw,116px); }
 .title { position:relative; }
 .page-hero { border-bottom:1px solid #d3e2dd; background:radial-gradient(circle at 80% 25%,#f4bc4b30,transparent 20%),linear-gradient(120deg,#e7f2ed,#f8f6ef 60%,#f5ead4); }
 .page-hero::before { width:510px; height:510px; right:-150px; top:-260px; border:1px solid #0b7c7e25; background:linear-gradient(145deg,#91d8cb88,#f4bc4b52); box-shadow:0 0 0 50px #fff3,0 0 0 100px #fff2; }
@@ -207,12 +209,12 @@ h1,h2,h3 { text-wrap:balance; }
 .editorial-card:nth-child(3) { margin-top:56px; }
 
 @media(max-width:1100px){
-  .hero-layout{grid-template-columns:1fr;gap:50px}.hero-copy{max-width:800px}.hero-visual{max-width:720px;margin-inline:auto;width:100%}.hero-premium{min-height:auto}.hero-container{padding-bottom:95px}.booking-float{display:none}.island-ticker + .section{padding-top:90px}
+  .hero-layout{grid-template-columns:1fr;gap:50px}.hero-copy{max-width:800px}.hero-visual{max-width:720px;margin-inline:auto;width:100%}.hero-premium{min-height:auto}.hero-container{padding-bottom:95px}.booking-float{display:none}.island-ticker + .section{padding-top:90px}.hero-premium + .home-featured-priority{padding-top:90px}.island-ticker + .home-guide-intro{padding-top:90px}
 }
 @media(max-width:760px){
   .edition-bar .container{height:30px;justify-content:center}.edition-bar{font-size:7px}.site-header{padding:6px 0}.header-inner{min-height:62px;padding:7px 8px 7px 11px;border-radius:22px 22px 22px 8px}.brand-symbol{width:44px;height:44px}.brand-copy strong{font-size:23px}.brand-copy small{font-size:7px}.menu-button{width:44px;height:44px}
   .mobile-menu{position:absolute;top:76px;left:12px;right:12px;width:auto}.hero-container{padding-top:38px;padding-bottom:72px}.hero-copy{padding-left:0}.hero-copy::before{display:none}.hero-issue{margin-bottom:20px}.hero-premium .display{font-size:clamp(3.7rem,18vw,5.25rem);line-height:.85}.hero-intro{margin-top:24px;font-size:.98rem;line-height:1.7}.hero-actions{display:grid}.hero-actions .btn{width:100%}.hero-stats{gap:15px;justify-content:space-between}.hero-stats strong{font-size:28px}.hero-stats i{font-size:7px}.hero-visual{padding:4px 0 0}.hero-main-image{height:430px!important;border-radius:90px 24px 90px 24px!important}.hero-location{top:24px;left:24px}.hero-caption{right:14px;bottom:14px;width:82%;padding:18px 20px;border-radius:22px 22px 55px 22px}.hero-caption p{font-size:23px}.hero-stamp{left:-4px;bottom:72px;width:92px;height:92px}.hero-note{display:none}.hero-visual::before{display:none}.hero-grid-lines{background-size:70px 70px}
-  .ticker-track{justify-content:flex-start;overflow-x:auto}.ticker-track a{min-height:48px;padding:0 18px;white-space:nowrap;font-size:8px}.island-ticker + .section{padding-top:72px}
+  .ticker-track{justify-content:flex-start;overflow-x:auto}.ticker-track a{min-height:48px;padding:0 18px;white-space:nowrap;font-size:8px}.island-ticker + .section{padding-top:72px}.hero-premium + .home-featured-priority{padding-top:72px}.island-ticker + .home-guide-intro{padding-top:72px}
   .section{padding:70px 0}.card{border-radius:26px 26px 26px 9px}.editorial-card:nth-child(2),.editorial-card:nth-child(3){margin-top:0}.discover-card:nth-child(2n),.discover-card:nth-child(2n):hover{transform:none}.page-hero .container{min-height:390px;padding-block:54px}.page-hero::before{width:350px;height:350px;right:-190px;top:-160px}.prose>section::before{font-size:30px;top:48px}.prose h2{max-width:88%}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-stamp::after{animation:none}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
